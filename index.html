@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trent Combs / Portfolio</title>
+<meta name="description" content="Trent Combs, cybersecurity student at Northern Kentucky University. Cloud, incident response, forensics, and web app development." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --bg-raised: #ebe6dc;
+    --ink: #151821;
+    --ink-soft: #3a3f4b;
+    --ink-muted: #6b7280;
+    --rule: #d3ccbe;
+    --accent: #1a3a5c;
+    --accent-warm: #b5532a;
+    --shadow-soft: 0 1px 0 rgba(21, 24, 33, 0.04), 0 10px 40px -20px rgba(21, 24, 33, 0.18);
+    --serif: "Fraunces", ui-serif, Georgia, serif;
+    --sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(26, 58, 92, 0.06), transparent 60%),
+      radial-gradient(ellipse 50% 30% at 100% 20%, rgba(181, 83, 42, 0.05), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(26, 58, 92, 0.25);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  a:hover {
+    border-bottom-color: var(--accent);
+    color: var(--accent-warm);
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- nav ---------- */
+  nav.top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(244, 241, 234, 0.75);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  nav.top.scrolled {
+    border-bottom-color: var(--rule);
+    background: rgba(244, 241, 234, 0.88);
+  }
+  nav.top .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    border: none;
+    color: var(--ink);
+  }
+  .brand:hover { color: var(--accent); border: none; }
+  .brand em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    border: none;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--accent); border: none; }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    padding: 100px 0 80px;
+    position: relative;
+  }
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--ink-muted);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero p.lede {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.1vw, 22px);
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 0 40px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+  }
+  .hero-meta span strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-bottom: 4px;
+    opacity: 0.6;
+  }
+  .hero-meta a { color: var(--ink); border-bottom-color: var(--rule); }
+
+  /* ---------- sections ---------- */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .section-head {
+    display: block;
+    margin-bottom: 48px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-number {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .section-number::before {
+    content: attr(data-num);
+    display: inline-block;
+    margin-right: 14px;
+    color: var(--accent-warm);
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ---------- about ---------- */
+  .about-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+  }
+  @media (max-width: 720px) {
+    .about-body { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .about-body .sidenote {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    padding-top: 6px;
+  }
+  .about-body p {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+    font-weight: 400;
+  }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  /* ---------- skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skill {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    padding-right: 32px;
+    transition: background 0.25s ease;
+  }
+  .skill:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); }
+  .skill:nth-child(even) { padding-left: 32px; }
+  @media (max-width: 720px) {
+    .skill:nth-child(odd) { padding-right: 0; border-right: none; }
+    .skill:nth-child(even) { padding-left: 0; }
+  }
+  .skill-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .skill-desc {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ---------- academic / capabilities ---------- */
+  .cap-list { display: flex; flex-direction: column; gap: 0; }
+  .cap {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .cap:last-child { border-bottom: 1px solid var(--rule); }
+  @media (max-width: 720px) { .cap { grid-template-columns: 1fr; gap: 8px; } }
+  .cap-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  .cap-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- internship projects ---------- */
+  .project-intro {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin: 0 0 48px;
+  }
+  .project {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .project:last-child { border-bottom: 1px solid var(--rule); }
+  @media (max-width: 720px) { .project { grid-template-columns: 1fr; gap: 12px; } }
+  .project-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+  .project-meta .tag {
+    display: inline-block;
+    color: var(--accent-warm);
+    margin-bottom: 6px;
+  }
+  .project h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .project p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+  .project ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .project ul li {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    background: var(--bg-raised);
+    color: var(--ink-soft);
+    border-radius: 2px;
+  }
+
+  /* ---------- outside ---------- */
+  .outside p {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    max-width: 720px;
+  }
+  .gh-card {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 22px;
+    background: var(--bg-raised);
+    border-radius: 4px;
+    border: none;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gh-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(21, 24, 33, 0.04), 0 16px 50px -20px rgba(21, 24, 33, 0.22);
+    color: var(--accent);
+    border: none;
+  }
+  .gh-card svg { flex-shrink: 0; }
+
+  /* ---------- footer ---------- */
+  footer {
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer a { color: var(--ink-soft); border-bottom-color: var(--rule); }
+
+  /* ---------- reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" id="topnav">
+  <div class="wrap">
+    <a href="#top" class="brand">Trent <em>Combs</em></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Academic</a>
+      <a href="#internship">Internship</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-label reveal">Portfolio &nbsp;·&nbsp; Spring 2026</div>
+    <h1 class="reveal">
+      Cybersecurity student<br>
+      building <em>practical tools</em><br>
+      for real-world work.
+    </h1>
+    <p class="lede reveal">
+      I study at Northern Kentucky University and build things on the side,
+      mostly web apps that solve stubborn, everyday workflow problems.
+      This is a snapshot of what I can do and what I&rsquo;m working on right now.
+    </p>
+    <div class="hero-meta reveal">
+      <span><strong>Location</strong>Covington, KY</span>
+      <span><strong>Graduating</strong>Spring 2026</span>
+      <span><strong>Email</strong><a href="mailto:ttrentcombs@gmail.com">ttrentcombs@gmail.com</a></span>
+      <span><strong>GitHub</strong><a href="https://github.com/ttrentcombs" target="_blank" rel="noopener">@ttrentcombs</a></span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-number" data-num="01">About</div>
+    </div>
+    <div class="about-body reveal">
+      <div class="sidenote">
+        Cybersecurity major<br>
+        NKU, Spring 2026<br><br>
+        5 years customer-facing<br>
+        experience alongside<br>
+        technical coursework
+      </div>
+      <div>
+        <p>
+          My coursework covers the practical side of the field: cloud infrastructure,
+          incident response, digital forensics, and secure software development.
+          I&rsquo;m drawn to work that sits at the intersection of building things
+          and defending them.
+        </p>
+        <p>
+          Outside of class I build real-world tools. I&rsquo;ve been developing Google Apps
+          Script web applications for a property management workflow, which has pushed
+          me to get comfortable with end-to-end problems: form design, PDF generation,
+          data logging, and user-facing polish. Five years of customer-facing work at
+          Clean Eatz Caf&eacute; sharpened the communication side. Explaining technical
+          things clearly and owning a problem until it&rsquo;s actually solved.
+        </p>
+        <p>
+          I&rsquo;m drawn to roles where I can support users, improve processes, and keep
+          learning, whether that&rsquo;s implementation, end-user support, or security operations.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-number" data-num="02">Skills</div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill">
+        <div class="skill-label">Cloud</div>
+        <div class="skill-desc">Proficient in AWS CLI; comfortable with EC2, S3, and VPC security configuration.</div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Security Operations</div>
+        <div class="skill-desc">Splunk SPL queries, incident response workflows, log analysis, attack timeline reconstruction.</div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Digital Forensics</div>
+        <div class="skill-desc">Linux forensics, process and malware analysis, application artifact research.</div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Programming</div>
+        <div class="skill-desc">Python, Java, C++. Concurrent programming, data structures, and algorithms.</div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Web Development</div>
+        <div class="skill-desc">Google Apps Script, HTML / CSS / JavaScript, PDF generation APIs, Workspace integration.</div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Systems &amp; Strengths</div>
+        <div class="skill-desc">Linux, Windows, command-line tooling. Clear communication, documentation, troubleshooting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-number" data-num="03">Academic</div>
+    </div>
+    <div class="cap-list reveal">
+      <div class="cap">
+        <div class="cap-name">Cloud Infrastructure</div>
+        <div class="cap-body">
+          I can provision and manage cloud resources through the AWS CLI, spin up and configure EC2 instances,
+          work with S3 storage, and reason about VPC-level network security. Comfortable troubleshooting from
+          the command line rather than relying on the console.
+        </div>
+      </div>
+      <div class="cap">
+        <div class="cap-name">Incident Response &amp; Threat Detection</div>
+        <div class="cap-body">
+          I can work inside Splunk to write SPL queries, investigate suspicious activity in log data,
+          reconstruct attack timelines, classify affected assets, and produce a clear written incident report.
+          Familiar with common attack techniques and how they surface in logs.
+        </div>
+      </div>
+      <div class="cap">
+        <div class="cap-name">Digital Forensics</div>
+        <div class="cap-body">
+          I can analyze Linux systems for signs of compromise, investigating running processes,
+          identifying masquerading techniques, and examining suspicious binaries. I can also read
+          and summarize forensic research on specific applications and platforms.
+        </div>
+      </div>
+      <div class="cap">
+        <div class="cap-name">Software Development</div>
+        <div class="cap-body">
+          I can write clean, spec-driven code in Python, Java, and C++, including multi-threaded programs using
+          modern concurrency APIs. Solid grounding in data structures and algorithms, with a focus on code
+          that&rsquo;s correct, readable, and matches the problem at hand.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="internship">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-number" data-num="04">Internship</div>
+    </div>
+    <p class="project-intro reveal">
+      My current internship work has centered on replacing third-party tools with custom
+      Google Apps Script web applications, giving the team more control over their data,
+      their branding, and their workflow.
+    </p>
+
+    <div class="reveal">
+      <div class="project">
+        <div class="project-meta">
+          <div class="tag">Project 01</div>
+          Google Apps Script<br>
+          Web App / PDF<br>
+          Ongoing
+        </div>
+        <div>
+          <h3>Move-Out Inspection Web App</h3>
+          <p>
+            Google Apps Script web application for conducting property move-out inspections.
+            Features a multi-room dynamic form, automated PDF report generation through the
+            DocumentApp API, storage of completed reports to Google Drive, and email notifications
+            on submission. Work has involved standardizing room sections across inspections,
+            building summary tables with cost columns, and carefully handling margin and
+            page-break formatting so the generated PDF reports look clean and professional.
+          </p>
+          <ul>
+            <li>Google Apps Script</li>
+            <li>DocumentApp API</li>
+            <li>Drive API</li>
+            <li>HTML / JS</li>
+            <li>PDF generation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-meta">
+          <div class="tag">Project 02</div>
+          Migration<br>
+          Apps Script<br>
+          Sheets / PDF
+        </div>
+        <div>
+          <h3>Customer Intake Form Migration</h3>
+          <p>
+            Migrated an existing JotForm-based intake workflow to a full Google Apps Script solution.
+            The new system includes a dual-signature flow, structured logging to Google Sheets,
+            and auto-generated PDF records delivered by email. Designed around the day-to-day needs
+            of the RPM team, with less reliance on external form providers.
+          </p>
+          <ul>
+            <li>Google Apps Script</li>
+            <li>Google Sheets</li>
+            <li>PDF generation</li>
+            <li>Dual signature flow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-number" data-num="05">Contact</div>
+    </div>
+    <div class="about-body reveal">
+      <div class="sidenote">
+        Currently open to<br>
+        implementation,<br>
+        end-user support,<br>
+        and SecOps roles<br>
+        post-graduation.
+      </div>
+      <div>
+        <p style="font-family: var(--serif); font-size: 19px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 20px;">
+          The fastest way to reach me is email. I respond quickly and don&rsquo;t mind
+          getting into the weeds on a problem, whether it&rsquo;s a workflow question,
+          a technical one, or just a conversation about where things could go.
+        </p>
+        <p style="font-family: var(--mono); font-size: 14px; line-height: 1.9; margin: 24px 0 0; letter-spacing: 0.02em;">
+          <a href="mailto:ttrentcombs@gmail.com">ttrentcombs@gmail.com</a><br>
+          <a href="https://www.linkedin.com/in/trentcombs" target="_blank" rel="noopener">linkedin.com/in/trentcombs</a><br>
+          <a href="https://github.com/ttrentcombs" target="_blank" rel="noopener">github.com/ttrentcombs</a><br>
+          <span style="color: var(--ink-muted);">+1 &nbsp;859 &nbsp;393 &nbsp;1307</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr"></span> Trent Combs. Built by hand.</div>
+    <div>Covington, Kentucky</div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav shadow
+  const nav = document.getElementById('topnav');
+  const onScroll = () => {
+    if (window.scrollY > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
